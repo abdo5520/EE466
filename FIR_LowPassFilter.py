@@ -12,3 +12,10 @@ h = signal.firwin(num_taps, cut_off, nyq=sample_rate/2)
 # plot the impulse response
 plt.plot(h, '.-')
 plt.show()
+
+# plot the frequency response
+H = np.abs(np.fft.fft(h, 1024)) # take the 1024-point FFT and magnitude
+H = np.fft.fftshift(H) # make 0 Hz in the center
+w = np.linspace(-sample_rate/2, sample_rate/2, len(H)) # x axis
+plt.plot(w, H, '.-')
+plt.show()
